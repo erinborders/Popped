@@ -34,7 +34,97 @@ const locationRouter = express.Router()
  * TODO: Put all request handlers here
  */
 
+ // getting all locations and pop up events
+locationRouter.get('/', (req, res) => {
+  let getAllLocations = locationApi.getAllLocations()
+  let getAllShops = shopApi.getAllShops()
+  let getAllFood = foodApi.getAllFood()
+  return Promise.all([getAllLocations, getAllShops, getAllFood])
+    .then(([locations, shops, food]) => {
+        // check syntax
+        res.json([locations, shops, food])
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 
+// getting all food pop up events
+locationRouter.get('/food', (req, res) => {
+  let getAllLocations = locationApi.getAllLocations()
+  let getAllFood = foodApi.getAllFood()
+  return Promise.all([getAllLocations, getAllFood])
+      .then(([locations, food]) => {
+          res.json([locations, food])
+      })
+      .catch(err => {
+        console.log(err)
+      })
+})
+
+// getting all shop pop up events
+locationRouter.get('/shops', (req, res) => {
+  let getAllLocations = locationApi.getAllLocations()
+  let getAllShops = shopApi.getAllShops()
+  return Promise.all([getAllLocations, getAllShops])
+      .then(([locations, shops]) => {
+          res.json([locations, shops])
+      })
+      .catch(err => {
+        console.log(err)
+      })
+})
+
+// getting all pop up events at a specific location
+locationRouter.get('/:locationId', (req, res) => {
+  req.body.locationId = req.params.locationId
+  let getLocation = locationApi.getLocation(req.params.locationId)
+  let getFood = foodApi.getFoodByLocationId(req.params.locationId)
+  let getShops = shopApi.getShopsByLocationId(req.params.locationId)
+  return Promise.all([getLocation, getFood, getShops])
+    .then(([location, food, shops]) => {
+      // check syntax
+      res.json([location, food, shops])
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+// creating a new location
+locationRouter.post('/', (req, res) => {
+  locationApi.addLocation(req.body)
+    .then(newLocation => {
+      res.json(newLocation)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+// updating a location
+locationRouter.put('/:locationId', (req, res) => {
+  locationApi.editLocation(req.params.locationId, req.body)
+    .then(editedLocation => {
+      res.json(editedLocation)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+// deleting a location
+locationRouter.delete(':/locationId', (req, res) => {
+  let deleteLocation = locationApi.deleteLocation(req.params.locationId)
+  // delete food by location
+  // delete shops by location
+    .then(deletedLocation => {
+      res.json(deletedLocation)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 
 /* Step 6
  *
