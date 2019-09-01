@@ -116,11 +116,11 @@ locationRouter.put('/:locationId', (req, res) => {
 // deleting a location
 locationRouter.delete(':/locationId', (req, res) => {
   let deleteLocation = locationApi.deleteLocation(req.params.locationId)
-  // delete food by location
-  // delete shops by location
-  return Promise.all([deleteLocation])
-    .then(deletedLocation => {
-      res.json(deletedLocation)
+  let deleteFood = foodApi.deleteFoodByLocation(req.params.locationId)
+  let deleteShops = shopApi.deleteShopByLocation(req.params.locationId)
+  return Promise.all([deleteLocation, deleteFood, deleteShops])
+    .then(([location, food, shops]) => {
+      res.json([location, food, shops])
     })
     .catch(err => {
       console.log(err)
