@@ -17,8 +17,11 @@ const mongoose = require('./connection.js')
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SampleModelSchema = new mongoose.Schema({
- name: String
+const LocationSchema = new mongoose.Schema({
+ neighborhood: {
+   type: String,
+   required: true
+ }
 })
 
 /* Step 3
@@ -27,15 +30,35 @@ const SampleModelSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SampleCollection = mongoose.model('Sample', SampleModelSchema)
+const LocationCollection = mongoose.model('Location', LocationSchema)
 
 /* Step 4
  *
  * TODO: delete this it's just a sample
  *
  */
-function getHelloWorldString() {
-  return 'hello world'
+function getAllLocations() {
+  return LocationCollection.find()
+}
+
+function addLocation (location) {
+  return LocationCollection.create(location)
+}
+
+function getLocation (locationId) {
+  return LocationCollection.findById(locationId)
+}
+
+function editLocation(locationId, newLocation) {
+  return LocationCollection.findByIdAndUpdate(locationId, newLocation)
+}
+
+function deleteLocation (locationId) {
+  return LocationCollection.findByIdAndDelete(locationId)
+}
+
+function deleteAllLocations () {
+  return LocationCollection.deleteMany()
 }
 
 /* Step 5
@@ -44,5 +67,10 @@ function getHelloWorldString() {
  * object
  */
 module.exports = {
-  getHelloWorldString
+  getAllLocations,
+  addLocation,
+  editLocation,
+  getLocation,
+  deleteAllLocations,
+  deleteLocation
 }
