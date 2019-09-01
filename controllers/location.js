@@ -118,6 +118,7 @@ locationRouter.delete(':/locationId', (req, res) => {
   let deleteLocation = locationApi.deleteLocation(req.params.locationId)
   // delete food by location
   // delete shops by location
+  return Promise.all([deleteLocation])
     .then(deletedLocation => {
       res.json(deletedLocation)
     })
