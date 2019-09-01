@@ -59,6 +59,10 @@ function getAllFood() {
   function deleteFood (foodId) {
     return FoodCollection.findByIdAndDelete(foodId)
   }
+
+  function deleteFoodByLocation(locationId) {
+    return FoodCollection.findByIdAndDelete({locationId: locationId})
+  }
   
   function deleteAllFood () {
     return FoodCollection.deleteMany()
@@ -70,6 +74,7 @@ function getAllFood() {
     getOneFood,
     editFood,
     deleteFood,
+    deleteFoodByLocation,
     deleteAllFood,
     getFoodByLocationId
   }

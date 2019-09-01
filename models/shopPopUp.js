@@ -58,6 +58,10 @@ function getAllShops() {
   function deleteShop (shopId) {
     return ShopCollection.findByIdAndDelete(shopId)
   }
+
+  function deleteShopByLocation (locationId) {
+    return ShopCollection.findByIdAndDelete({locationId: locationId})
+  }
   
   function deleteAllShops () {
     return ShopCollection.deleteMany()
@@ -70,5 +74,6 @@ function getAllShops() {
       getOneShop,
       editShop,
       deleteShop,
+      deleteShopByLocation,
       deleteAllShops
   }
