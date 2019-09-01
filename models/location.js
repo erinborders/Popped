@@ -9,16 +9,7 @@
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const mongoose = require('./connection.js')
-
-/* Step 1 alternative
- *
- * TODO: make a global variable to act as an in memory database. 
- * NOTE: doing this WILL NOT persist your data and you will loose
- * your data once you stop running your server.
- *
- */
-global.sampleModel = [];
+const mongoose = require('./connection.js')
 
 /* Step 2
  *
@@ -26,9 +17,9 @@ global.sampleModel = [];
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const SampleModelSchema = new mongoose.Schema({
-//  name: String
-//})
+const SampleModelSchema = new mongoose.Schema({
+ name: String
+})
 
 /* Step 3
  *
@@ -36,7 +27,7 @@ global.sampleModel = [];
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const SampleCollection = mongoose.model('Sample', SampleModelSchema)
+const SampleCollection = mongoose.model('Sample', SampleModelSchema)
 
 /* Step 4
  *
