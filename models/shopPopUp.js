@@ -11,8 +11,10 @@ const ShopSchema = new mongoose.Schema({
         type: String,
         description: String,
         price: Number,
+        image: String,
         required: true
     },
+    wares: String,
     price: {
         type: String,
         enum: ['$', '$$', '$$$', '$$$$'],
@@ -25,8 +27,9 @@ const ShopSchema = new mongoose.Schema({
     date: {
         type: Date,
         time: String,
-        default: Date.now
+        default: Date.now()
     },
+    image: String,
     locationId: mongoose.Types.ObjectId
 })
 
