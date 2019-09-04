@@ -77,7 +77,7 @@ locationRouter.put('/:locationId', (req, res) => {
 })
 
 // deleting a location
-locationRouter.delete(':/locationId', (req, res) => {
+locationRouter.delete('/:locationId', (req, res) => {
   locationApi.deleteLocation(req.params.locationId)
     .then(location => {
       res.json(location)
