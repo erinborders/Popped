@@ -10,12 +10,8 @@ export default class Home extends Component {
 
     componentDidMount() {
         this.fetchLocations()
-            .then(() => {
-                this.fetchFoodPopUps()
-            })
-            .then(() => {
-                this.fetchShopPopUps()
-            })
+        this.fetchFoodPopUps()
+        this.fetchShopPopUps()
     }
 
     fetchLocations = () => {
