@@ -10,7 +10,8 @@ const FoodSchema = new mongooose.Schema({
         required: true
     },
     meal: {
-        type: String,
+        type: Object,
+        mealName: String,
         description: String,
         image: String,
         price: Number,
@@ -28,7 +29,7 @@ const FoodSchema = new mongooose.Schema({
     date: {
         type: Date,
         time: String,
-        default: Date.now()
+        default: Date.now() // remove this?
     },
     image: String,
     locationId: mongooose.Types.ObjectId

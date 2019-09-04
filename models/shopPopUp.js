@@ -8,7 +8,8 @@ const ShopSchema = new mongoose.Schema({
         required: true
     },
     product: {
-        type: String,
+        type: Object,
+        productType: String,
         description: String,
         price: Number,
         image: String,
@@ -26,9 +27,9 @@ const ShopSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        time: String,
         default: Date.now()
     },
+    time: String,
     image: String,
     locationId: mongoose.Types.ObjectId
 })

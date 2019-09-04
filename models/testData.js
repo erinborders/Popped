@@ -20,7 +20,7 @@ const anotherBrokenEgg = {
     restaurantName: "Another Broken Egg",
     cuisine: "Breakfast",
     meal: {
-        type: 'Pancakes',
+        mealName: 'Pancakes',
         description: 'Pecan Pancakes with cinammon glaze',
         price: 15,
         image: 'test' //add image link here
@@ -35,7 +35,7 @@ const papisCubanGrill = {
     restaurantName: "Papi's Cuban Grill",
     cuisine: "Caribbean",
     meal: {
-        type: 'Cuban Sandwich',
+        mealName: 'Cuban Sandwich',
         description: 'Thick cut pork on a hoagie',
         price: 10,
         image: 'test' //add image link here
@@ -50,7 +50,7 @@ const foodShoppe = {
     restaurantName: "The Food Shoppe",
     cuisine: "Creole",
     meal: {
-        type: 'Jambalaya',
+        mealName: 'Jambalaya',
         description: 'Andouille sausage, shrimp, chicken, and Cajun seasoning',
         price: 12,
         image: 'test' //add image link here
