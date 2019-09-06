@@ -5,13 +5,15 @@ export default class Home extends Component {
     state = {
         locations: [],
         foodPopUps: [],
-        shopPopUps: []
+        shopPopUps: [],
+        events: []
     }
 
     componentDidMount() {
         this.fetchLocations()
         this.fetchFoodPopUps()
         this.fetchShopPopUps()
+        this.fetchEvents()
     }
 
     fetchLocations = () => {
@@ -32,6 +34,13 @@ export default class Home extends Component {
         axios.get('/api/shops')
             .then(res => {
                 this.setState({shopPopUps: res.data})
+            })
+    }
+
+    fetchEvents = () => {
+        axios.get('/api/fetchEvents')
+            .then(res => {
+                this.setState({events: res.data.events})
             })
     }
 
@@ -60,6 +69,14 @@ export default class Home extends Component {
             )
         })
 
+        let eventList =  this.state.events ? this.state.events.map(event => {
+            return(
+                <div>
+                    <p>{event.name.html}</p>
+                </div>
+            )
+        }) : null
+
         return (
             <div>
                 <div>
@@ -70,6 +87,9 @@ export default class Home extends Component {
                 </div>
                 <div>
                     {shopList}
+                </div>
+                <div>
+                    {eventList}
                 </div>
             </div>
         )
