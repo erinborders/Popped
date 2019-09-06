@@ -6,6 +6,8 @@
 const express = require('express')
 const app = express()
 
+const dotenv = require('dotenv');
+dotenv.config();
 /* Step 2
  * 
  * import routers from controllers/
@@ -14,6 +16,7 @@ const app = express()
 const { locationRouter } = require('./controllers/location.js')
 const { foodRouter } = require('./controllers/foodPopUp.js')
 const { shopRouter } = require('./controllers/shopPopUp.js')
+const { eventBrite } = require('./controllers/eventbritePopUp.js')
 
 /* Step 3
  *
@@ -48,6 +51,18 @@ app.use(express.static(`${__dirname}/client/build`))
 app.use('/api/locations', locationRouter)
 app.use('/api/food', foodRouter)
 app.use('/api/shops', shopRouter)
+
+
+let events = [];
+eventBrite
+.then(res => res.json())
+.then(json => { 
+    events = json
+})
+app.get('/api/fetchEvents', (req, res) => {
+    console.log('events', events)
+    res.json(events)
+})
 
 /* Step 5
  *
