@@ -22,7 +22,7 @@ export default class LandingPage extends Component {
         }
 
         return (
-            <div>
+            
                 <div id="landing-page-container">
                     <div id="image-container">
                         <img id="landing-page-image" src={Atlanta} />
@@ -32,7 +32,7 @@ export default class LandingPage extends Component {
                         <p className="subtitle">Atlanta pop ups in one place</p>
                     </div>
                 </div>
-            </div>
+        
         )
     }
 }

@@ -18,7 +18,6 @@
 
 body {
   background-color: aqua;
-  overflow-y: scroll;
   animation: Home-page 1s ease-in forwards;
 }
 
@@ -38,6 +37,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  overflow: hidden;
 }
 
 #circle {
