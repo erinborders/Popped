@@ -18,7 +18,17 @@
 
 body {
   background-color: aqua;
-  overflow: hidden;
+  overflow-y: scroll;
+  animation: Home-page 1s ease-in forwards;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter .fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
 }
 
 #landing-page-container {
@@ -58,6 +68,10 @@ body {
   margin: 0 0 0 9rem;
 }
 
+#home-page-container {
+  animation: Home-page 1s ease-in forwards;
+}
+
 @keyframes Landing-page {
   0% {
     opacity: 0;
@@ -77,5 +91,14 @@ body {
   to {
     left: 0;
     top: 0;
+  }
+}
+
+@keyframes Home-page {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
   }
 }
