@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Grid, Paper } from '@material-ui/core'
+import SearchBar from './SearchBar.js'
+import Nav from './Nav.js'
 
 export default class Home extends Component {
     state = {
@@ -85,18 +88,28 @@ export default class Home extends Component {
 
         return (
             <div id="home-page-container">
-                <div>
-                    {locationsList}
-                </div>
-                <div>
-                    {foodList}
-                </div>
-                <div>
-                    {shopList}
-                </div>
-                <div>
-                    {eventList}
-                </div>
+                <Grid container>
+                    <Grid item>
+                        <Nav />
+                    </Grid>
+                    <Grid item>
+                        <SearchBar />
+                    </Grid>
+                    <Grid item>
+                        <div>
+                            {locationsList}
+                        </div>
+                        <div>
+                            {foodList}
+                        </div>
+                        <div>
+                            {shopList}
+                        </div>
+                        <div>
+                            {eventList}
+                        </div>
+                    </Grid>
+                </Grid>
             </div>
         )
     }
