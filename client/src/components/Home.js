@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Card, CardContent, CardMedia, Container, Grid, Paper } from '@material-ui/core'
 import SearchBar from './SearchBar.js'
 import Nav from './Nav.js'
+import CreatePopUpForm from './CreatePopUpForm.js'
 
 export default class Home extends Component {
     state = {
@@ -106,6 +107,7 @@ export default class Home extends Component {
                             <div>
                                 {locationsList}
                             </div>
+                        <CreatePopUpForm />
                     </Grid>
                     <Grid item xs={9}>
                             <Container id="events-list">

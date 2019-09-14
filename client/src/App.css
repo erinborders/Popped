@@ -110,11 +110,11 @@ h2 {
 
 .eventbrite-event{
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .eventbrite-event-image {
-  height: 10rem;
-  width: 10rem;
+  height: 20rem;
+  width: 20rem;
   object-fit: cover;
 }
