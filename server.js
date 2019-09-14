@@ -59,6 +59,7 @@ eventBrite
 .then(json => { 
     events = json
 })
+
 app.get('/api/fetchEvents', (req, res) => {
     console.log('events', events)
     res.json(events)

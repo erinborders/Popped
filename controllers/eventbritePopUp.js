@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue&token=${process.env.PRIVATE_TOKEN}`)
 
+// TO DO: CREATE EVENT LISTENER FOR SEARCH QUERY 
 
 //  request({
 //         method: 'GET',
