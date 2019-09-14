@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Paper } from '@material-ui/core'
+import { Container, Input, List, ListItem, ListItemIcon, ListItemText, Paper } from '@material-ui/core'
+
 
 export default class SearchBar extends Component {
     render() {
@@ -7,6 +8,11 @@ export default class SearchBar extends Component {
             <Container>
                 <Paper id="search-bar">
                     <h2>Search</h2>
+                    <div>
+                        <Input
+                            placeholder="zipcode"
+                        />
+                    </div>
                 </Paper>
             </Container>
         )

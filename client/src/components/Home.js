@@ -50,33 +50,33 @@ export default class Home extends Component {
     }
 
     render() {
-        let locationsList = this.state.locations.map(location => {
-            return(
-                <div>
-                    <p>{location.neighborhood}</p>
-                </div>
-            )
-        })
+        // let locationsList = this.state.locations.map(location => {
+        //     return(
+        //         <div>
+        //             <p>{location.neighborhood}</p>
+        //         </div>
+        //     )
+        // })
 
-        let foodList = this.state.foodPopUps.map(foodPopUp => {
-            return(
-                <Card>
-                    <CardContent>
-                        <p>{foodPopUp.restaurantName}</p>
-                    </CardContent>
-                </Card>
-            )
-        })
+        // let foodList = this.state.foodPopUps.map(foodPopUp => {
+        //     return(
+        //         <Card>
+        //             <CardContent>
+        //                 <p>{foodPopUp.restaurantName}</p>
+        //             </CardContent>
+        //         </Card>
+        //     )
+        // })
 
-        let shopList = this.state.shopPopUps.map(shopPopUp => {
-            return(
-                <Card>
-                    <CardContent>
-                        <p>{shopPopUp.shopName}</p>
-                    </CardContent>
-                </Card>
-            )
-        })
+        // let shopList = this.state.shopPopUps.map(shopPopUp => {
+        //     return(
+        //         <Card>
+        //             <CardContent>
+        //                 <p>{shopPopUp.shopName}</p>
+        //             </CardContent>
+        //         </Card>
+        //     )
+        // })
 
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
@@ -104,19 +104,19 @@ export default class Home extends Component {
                     <Grid item xs={3}>
                         <SearchBar />
                         {/* TO DO: PUT LOCATIONS IN SEARCH BAR COMPONENT */}
-                            <div>
+                            {/* <div>
                                 {locationsList}
-                            </div>
+                            </div> */}
                         <CreatePopUpForm />
                     </Grid>
                     <Grid item xs={9}>
                             <Container id="events-list">
-                                <div>
+                                {/* <div>
                                     {foodList}
                                 </div>
                                 <div>
                                     {shopList}
-                                </div>
+                                </div> */}
                                 <div>
                                     {eventList}
                                 </div>
