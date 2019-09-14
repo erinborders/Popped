@@ -107,3 +107,14 @@ body {
 h2 {
   font-family: 'Lobster', cursive;
 }
+
+.eventbrite-event{
+  display: flex;
+  justify-content: space-around;
+}
+
+.eventbrite-event-image {
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+}

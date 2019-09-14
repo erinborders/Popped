@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Container, Grid, Paper } from '@material-ui/core'
+import { Card, CardContent, CardMedia, Container, Grid, Paper } from '@material-ui/core'
 import SearchBar from './SearchBar.js'
 import Nav from './Nav.js'
 
@@ -59,30 +59,38 @@ export default class Home extends Component {
 
         let foodList = this.state.foodPopUps.map(foodPopUp => {
             return(
-                <div>
-                    <p>{foodPopUp.restaurantName}</p>
-                </div>
+                <Card>
+                    <CardContent>
+                        <p>{foodPopUp.restaurantName}</p>
+                    </CardContent>
+                </Card>
             )
         })
 
         let shopList = this.state.shopPopUps.map(shopPopUp => {
             return(
-                <div>
-                    <p>{shopPopUp.shopName}</p>
-                </div>
+                <Card>
+                    <CardContent>
+                        <p>{shopPopUp.shopName}</p>
+                    </CardContent>
+                </Card>
             )
         })
 
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
-                <div>
-                    <p>{event.name.html} - {event.summary}</p>
-                    <p>{event.start.local} - {event.end.local}</p>
-                    <p>{event.venue.address.name}</p>
-                    <p>{event.venue.address.address_1}</p> 
-                    <p>Atlanta, GA, {event.venue.address.postal_code}</p>
-                    <img src={event.logo.original.url} />
-                </div>
+                <Card className="eventbrite-event">
+                    <CardMedia >
+                        <img className="eventbrite-event-image" src={event.logo.original.url} />
+                    </CardMedia>
+                    <CardContent>
+                        <p>{event.name.html} - {event.summary}</p>
+                        <p>{event.start.local} - {event.end.local}</p>
+                        <p>{event.venue.address.name}</p>
+                        <p>{event.venue.address.address_1}</p> 
+                        <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                    </CardContent>
+                </Card>
             )
         }) : null
 
@@ -94,13 +102,13 @@ export default class Home extends Component {
                     </Grid>
                     <Grid item xs={3}>
                         <SearchBar />
+                        {/* TO DO: PUT LOCATIONS IN SEARCH BAR COMPONENT */}
+                            <div>
+                                {locationsList}
+                            </div>
                     </Grid>
                     <Grid item xs={9}>
-                        <Paper id="events-list">
-                            <Container>
-                                <div>
-                                    {locationsList}
-                                </div>
+                            <Container id="events-list">
                                 <div>
                                     {foodList}
                                 </div>
@@ -111,7 +119,6 @@ export default class Home extends Component {
                                     {eventList}
                                 </div>
                             </Container>
-                        </Paper>
                     </Grid>
                 </Grid>
             </div>
