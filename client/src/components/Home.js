@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Grid, Paper } from '@material-ui/core'
+import { Container, Grid, Paper } from '@material-ui/core'
 import SearchBar from './SearchBar.js'
 import Nav from './Nav.js'
 
@@ -89,25 +89,29 @@ export default class Home extends Component {
         return (
             <div id="home-page-container">
                 <Grid container>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <Nav />
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={3}>
                         <SearchBar />
                     </Grid>
-                    <Grid item>
-                        <div>
-                            {locationsList}
-                        </div>
-                        <div>
-                            {foodList}
-                        </div>
-                        <div>
-                            {shopList}
-                        </div>
-                        <div>
-                            {eventList}
-                        </div>
+                    <Grid item xs={9}>
+                        <Paper id="events-list">
+                            <Container>
+                                <div>
+                                    {locationsList}
+                                </div>
+                                <div>
+                                    {foodList}
+                                </div>
+                                <div>
+                                    {shopList}
+                                </div>
+                                <div>
+                                    {eventList}
+                                </div>
+                            </Container>
+                        </Paper>
                     </Grid>
                 </Grid>
             </div>
