@@ -11,7 +11,7 @@ export default class LandingPage extends Component {
         this.setState({redirectToHome: true})
     }
 
-    //goes to home page after 3 seconds on landing page
+    // //goes to home page after 3 seconds on landing page
     componentDidMount() {
         setTimeout(this.fetchHomePage, 3000)
     }

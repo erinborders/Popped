@@ -84,7 +84,7 @@ export default class Home extends Component {
         }) : null
 
         return (
-            <div>
+            <div id="home-page-container">
                 <div>
                     {locationsList}
                 </div>
