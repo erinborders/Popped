@@ -28,7 +28,7 @@ export default class SearchBar extends Component {
             <Container id="search-bar-container">
                 <Paper id="search-bar">
                     <h2>Search</h2>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <SearchIcon />
                         <Input
                             placeholder="zipcode"
