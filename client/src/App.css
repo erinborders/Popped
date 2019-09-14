@@ -103,3 +103,7 @@ body {
     opacity: 100%;
   }
 }
+
+h2 {
+  font-family: 'Lobster', cursive;
+}
