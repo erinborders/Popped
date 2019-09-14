@@ -111,6 +111,7 @@ h2 {
 .eventbrite-event{
   display: flex;
   justify-content: flex-start;
+  margin: 20px 0;
 }
 
 .eventbrite-event-image {
