@@ -10,6 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage}/>
+          <Route path="/events" component={Home} />
         </Switch>
       </Router>
     </div>
