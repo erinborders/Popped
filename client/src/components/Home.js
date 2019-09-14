@@ -40,6 +40,7 @@ export default class Home extends Component {
     fetchEvents = () => {
         axios.get('/api/fetchEvents')
             .then(res => {
+                console.log(res.data)
                 this.setState({events: res.data.events})
             })
     }
@@ -72,7 +73,12 @@ export default class Home extends Component {
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
                 <div>
-                    <p>{event.name.html}</p>
+                    <p>{event.name.html} - {event.summary}</p>
+                    <p>{event.start.local} - {event.end.local}</p>
+                    <p>{event.venue.address.name}</p>
+                    <p>{event.venue.address.address_1}</p> 
+                    <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                    <img src={event.logo.original.url} />
                 </div>
             )
         }) : null
