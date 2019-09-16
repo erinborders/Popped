@@ -10,7 +10,9 @@ export default class Home extends Component {
         locations: [],
         foodPopUps: [],
         shopPopUps: [],
-        events: []
+        events: [],
+        searchedEvents: [],
+        hasSearched: false
     }
 
     componentDidMount() {
@@ -49,6 +51,23 @@ export default class Home extends Component {
             })
     }
 
+    fetchSearchedEvents = () => {
+        let searchedEvents = this.state.events.filter(event => event.venue.address.postal_code)
+        console.log(searchedEvents)
+        this.setState({searchedEvents: searchedEvents})
+    }
+
+    handleSearchChange = evt => {
+        let zipcode = evt.target.value 
+        this.setState({zipcode})
+    }
+
+    handleSearchSubmit = evt => {
+        evt.preventDefault()
+
+        this.fetchSearchedEvents()
+    }
+
     render() {
         // let locationsList = this.state.locations.map(location => {
         //     return(
@@ -78,6 +97,10 @@ export default class Home extends Component {
         //     )
         // })
 
+        let searchedEventsList = this.state.searchedEvents ? this.state.searchedEvents.map(event => {
+            
+        })
+
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
                 <Card className="eventbrite-event">
@@ -85,11 +108,14 @@ export default class Home extends Component {
                         <img className="eventbrite-event-image" src={event.logo.original.url} />
                     </CardMedia>
                     <CardContent>
-                        <p>{event.name.html} - {event.summary}</p>
-                        <p>{event.start.local} - {event.end.local}</p>
-                        <p>{event.venue.address.name}</p>
-                        <p>{event.venue.address.address_1}</p> 
-                        <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                        <div className="event-content-div">
+                            <h3>{event.name.html}</h3> 
+                            <p>{event.summary}</p>
+                            <p>{event.start.local} - {event.end.local}</p>
+                            <p>{event.venue.address.name}</p>
+                            <p>{event.venue.address.address_1}</p> 
+                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                        </div>
                     </CardContent>
                 </Card>
             )
@@ -102,7 +128,11 @@ export default class Home extends Component {
                         <Nav />
                     </Grid>
                     <Grid item xs={3}>
-                        <SearchBar />
+                        <SearchBar 
+                            searchedEvents={this.state.searchedEvents}
+                            fetchSearchedEvents={this.fetchSearchedEvents}
+                            handleSearchChange={this.handleSearchChange}
+                            handleSearchSubmit={this.handleSearchSubmit} />
                         {/* TO DO: PUT LOCATIONS IN SEARCH BAR COMPONENT */}
                             {/* <div>
                                 {locationsList}
