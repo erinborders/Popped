@@ -4,6 +4,7 @@ import { Card, CardContent, CardMedia, Container, Grid, Paper } from '@material-
 import SearchBar from './SearchBar.js'
 import Nav from './Nav.js'
 import CreatePopUpForm from './CreatePopUpForm.js'
+import Categories from './Categories.js'
 
 export default class Home extends Component {
     state = {
@@ -11,6 +12,7 @@ export default class Home extends Component {
         foodPopUps: [],
         shopPopUps: [],
         events: [],
+        categories: [],
         searchedEvents: [],
         hasSearched: false
     }
@@ -20,6 +22,7 @@ export default class Home extends Component {
         this.fetchFoodPopUps()
         this.fetchShopPopUps()
         this.fetchEvents()
+        this.fetchCategories()
     }
 
     fetchLocations = () => {
@@ -46,8 +49,16 @@ export default class Home extends Component {
     fetchEvents = () => {
         axios.get('/api/fetchEvents')
             .then(res => {
-                console.log(res.data)
                 this.setState({events: res.data.events})
+            })
+    }
+
+    fetchCategories = () => {
+        axios.get('/api/fetchEvents')
+            .then(res => {
+                let categories = new Set(res.data.events.map(event => event.category_id))
+                console.log(categories)
+                this.setState({categories})
             })
     }
 
@@ -120,9 +131,9 @@ export default class Home extends Component {
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
                 <Card className="eventbrite-event">
-                    <CardMedia >
+                    {/* <CardMedia >
                         <img className="eventbrite-event-image" src={event.logo.original.url} />
-                    </CardMedia>
+                    </CardMedia> */}
                     <CardContent>
                         <div className="event-content-div">
                             <h3>{event.name.html}</h3> 
@@ -142,6 +153,9 @@ export default class Home extends Component {
                 <Grid container>
                     <Grid item xs={12}>
                         <Nav />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Categories categories={this.state.categories} />
                     </Grid>
                     <Grid item xs={3}>
                         <SearchBar 
