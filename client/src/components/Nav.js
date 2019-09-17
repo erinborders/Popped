@@ -9,7 +9,7 @@ export default class Nav extends Component {
             <div>
                 <AppBar position="static">
                     <Toolbar className="nav-bar">
-                        <h2>Popped</h2>
+                        <h2 id="nav-logo">Popped</h2>
                         <button id="zipcode-button" onClick={this.props.handleChangeZipClick}>Change Zipcode</button>
                     </Toolbar>
                 </AppBar>

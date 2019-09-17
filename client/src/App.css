@@ -112,6 +112,8 @@ h2, h3 {
   display: flex;
   justify-content: flex-start;
   margin: 20px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .eventbrite-event-image {
@@ -133,23 +135,36 @@ p, button {
   animation: Home-page 1s ease-in forwards;
 }
 
+#nav-logo {
+  color: #2e6ff1;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
+  background-color: rgb(93, 255, 255);
 }
 
 .category-container {
   display: flex;
   justify-content: center;
   padding: 2rem;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 
 .category-button {
-  padding: 5px;
-  margin: 5px;
-  background-color: white;
-  border-radius: 15%;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #2e6ff1;
+  text-align: center;
+  background-color: rgb(0, 255, 255);
+  /* transition: all 0.2s; */
 }
 
 .category-button:focus {
@@ -157,7 +172,15 @@ p, button {
 }
 
 #zipcode-button {
-  background-color: rgb(189, 220, 247);
-  border-radius: 30%;
-  padding: 5px;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #2e6ff1;
+  text-align: center;
+  background-color: rgb(93, 255, 255);
 }
