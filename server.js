@@ -65,7 +65,7 @@ app.get('/api/fetchEvents', (req, res) => {
 })
 
 app.get('/api/fetchEventCategories', (req, res) => {
-    getEventsByCategory(req.query.categories)
+    getEventsByCategory(req.query.categories, req.query.zipcode)
         .then(res => {
             return res.json()
         })

@@ -3,11 +3,11 @@
 const request = require('request');
 const fetch = require('node-fetch');
 
-
+// TO DO: DELETE THIS 
 const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 
-const getEventsByCategory = (categoryId) => {
- return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&categories=${categoryId}&token=${process.env.PRIVATE_TOKEN}`)
+const getEventsByCategory = (categoryId, zipcode) => {
+ return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=${zipcode}&categories=${categoryId}&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 }
 
 const grabAllCategories = fetch(`https://www.eventbriteapi.com/v3/categories/?token=${process.env.PRIVATE_TOKEN}`)
