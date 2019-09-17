@@ -4,11 +4,15 @@ import { Button, Container, Paper } from '@material-ui/core'
 
 export default class Categories extends Component {
     state = {
-        categories: []
+        categoryEvents: []
     }
 
     handleClick = (evt) => {
         console.log(evt.target.name)
+        axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}`)
+            .then(res => {
+                console.log(res.data)
+            })
     }
 
     render() {
@@ -18,6 +22,12 @@ export default class Categories extends Component {
            )
        })
 
+       let nameList = Array.from(new Set(this.props.categories.map(category => category ? category.name : null))).map(name => {
+        return(
+            <button onClick={this.handleClick}>{name}</button>
+        )
+    })
+
         return (
             <div>
                 <Container>
@@ -25,6 +35,7 @@ export default class Categories extends Component {
                         <p>Categories</p>
                         {/* {categoryNameList} */}
                         {idList}
+                        {/* {nameList} */}
                     </Paper>
                 </Container>
             </div>
