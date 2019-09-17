@@ -7,14 +7,14 @@ export default class Categories extends Component {
         categories: []
     }
 
-    handleClick = () => {
-        console.log('working')
+    handleClick = (evt) => {
+        console.log(evt.target.name)
     }
 
     render() {
-       let idList = Array.from(new Set(this.props.categories.map(category => category ? category.id : null))).map(id => {
+       let idList = Array.from(new Set(this.props.categories.map(category => category ? category.id : null))).map(num => {
            return(
-               <Button onClick={this.handleClick}>{id}</Button>
+               <button name={num} onClick={this.handleClick}>{num}</button>
            )
        })
 
