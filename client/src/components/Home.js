@@ -13,14 +13,15 @@ export default class Home extends Component {
         shopPopUps: [],
         events: [],
         eventsByZipcode: [],
-        eventsByCategory: []
+        eventsByCategory: [],
+        hasSearched: false
     }
 
     componentDidMount() {
         this.fetchLocations()
         this.fetchFoodPopUps()
         this.fetchShopPopUps()
-        this.fetchEvents()
+        // this.fetchEvents()
     }
 
     fetchLocations = () => {
@@ -58,6 +59,7 @@ export default class Home extends Component {
                 let zipcodeEvents = [...this.state.eventsByZipcode]
                 res.data.events.map(event => zipcodeEvents.push(event))
                 this.setState({eventsByZipcode: zipcodeEvents})
+                this.setState({hasZipcode: true})
             })
     }
 
@@ -101,7 +103,7 @@ export default class Home extends Component {
         // })
 
 
-        let eventList =  this.state.events ? this.state.events.map(event => {
+        let eventList =  this.state.eventsByZipcode ? this.state.eventsByZipcode.map(event => {
             return(
                 <Card className="eventbrite-event">
                     <CardMedia >
@@ -119,10 +121,12 @@ export default class Home extends Component {
                     </CardContent>
                 </Card>
             )
-        }) : null
+        }) : <p>No results for this zipcode</p>
 
         return (
-            <div id="home-page-container">
+            
+                this.state.hasZipcode ?
+                <div id="home-page-container">
                 <Grid container>
                     <Grid item xs={12}>
                         <Nav />
@@ -131,10 +135,6 @@ export default class Home extends Component {
                         <Categories handleCategoryClick={this.handleCategoryClick} />
                     </Grid>
                     <Grid item xs={3}>
-                        <SearchBar 
-                            searchedEvents={this.state.searchedEvents}
-                            fetchEventsByZipcode={this.fetchEventsByZipcode}
-                         />
                         <CreatePopUpForm />
                     </Grid>
                     <Grid item xs={9}>
@@ -151,7 +151,12 @@ export default class Home extends Component {
                             </Container>
                     </Grid>
                 </Grid>
-            </div>
+            </div> : 
+            <SearchBar 
+                searchedEvents={this.state.searchedEvents}
+                fetchEventsByZipcode={this.fetchEventsByZipcode}
+         />
+            
         )
     }
 }
