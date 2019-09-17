@@ -9,7 +9,16 @@ export default class SearchBar extends Component {
         zipcode: ''
     }
 
-    
+    handleSearchChange = evt => {
+        let zipcode = evt.target.value 
+        this.setState({zipcode})
+    }
+
+    handleSearchSubmit = evt => {
+        evt.preventDefault()
+
+        this.props.fetchEventsByZipcode(this.state.zipcode)
+    }
 
     render() {
         
@@ -17,12 +26,12 @@ export default class SearchBar extends Component {
             <Container id="search-bar-container">
                 <Paper id="search-bar">
                     <h2>Search</h2>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSearchSubmit}>
                         <SearchIcon />
                         <Input
                             placeholder="zipcode"
                             name="zipcode"
-                            onChange={this.handleChange}
+                            onChange={this.handleSearchChange}
                             value={this.state.zipcode}
                         />
                     </form>
