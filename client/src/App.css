@@ -128,3 +128,7 @@ h2, h3 {
 p {
   font-family: 'Montserrat', sans-serif;
 }
+
+#search-bar-container {
+  animation: Home-page 1s ease-in forwards;
+}
