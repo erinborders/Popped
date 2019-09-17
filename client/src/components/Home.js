@@ -56,9 +56,15 @@ export default class Home extends Component {
     fetchCategories = () => {
         axios.get('/api/fetchEvents')
             .then(res => {
-                let categories = new Set(res.data.events.map(event => event.category_id))
+                let categories = res.data.events.map(event => {
+                    if(event.category) {
+                        return event.category.name
+                    }
+                })
+                let categorySet = new Set(categories)
+                let categoryNames = Array.from(categorySet)
                 console.log(categories)
-                this.setState({categories})
+                this.setState({categories: categoryNames})
             })
     }
 
@@ -139,9 +145,9 @@ export default class Home extends Component {
                             <h3>{event.name.html}</h3> 
                             <p>{event.summary}</p>
                             <p>{event.start.local} - {event.end.local}</p>
-                            <p>{event.venue.address.name}</p>
-                            <p>{event.venue.address.address_1}</p> 
-                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                            {/* <p>{event.venue.address.name}</p> */}
+                            {/* <p>{event.venue.address.address_1}</p>  */}
+                            {/* <p>Atlanta, GA, {event.venue.address.postal_code}</p> */}
                         </div>
                     </CardContent>
                 </Card>
