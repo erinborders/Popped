@@ -11,7 +11,9 @@ export default class Categories extends Component {
         console.log(evt.target.name)
         axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}`)
             .then(res => {
-                console.log(res.data)
+                let copiedCategoryEvents = [...this.state.categoryEvents]
+                res.data.events.map(event => copiedCategoryEvents.push(event))
+                this.setState({categoryEvents: copiedCategoryEvents})
             })
     }
 
