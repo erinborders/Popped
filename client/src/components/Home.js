@@ -58,13 +58,10 @@ export default class Home extends Component {
             .then(res => {
                 let categories = res.data.events.map(event => {
                     if(event.category) {
-                        return event.category.name
+                        return event.category
                     }
                 })
-                let categorySet = new Set(categories)
-                let categoryNames = Array.from(categorySet)
-                console.log(categories)
-                this.setState({categories: categoryNames})
+                this.setState({categories})
             })
     }
 
