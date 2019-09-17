@@ -14,6 +14,7 @@ export default class Home extends Component {
         events: [],
         eventsByZipcode: [],
         eventsByCategory: [],
+        hasClickedCategory: false,
         hasSearched: false,
         zipcode: ''
     }
@@ -77,11 +78,12 @@ export default class Home extends Component {
 
     // gets events by category and sets them in state
     handleCategoryClick = (evt) => {
-        axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}`)
+        axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}&zipcode=${this.state.zipcode}`)
             .then(res => {
                 let copiedCategoryEvents = [...this.state.eventsByCategory]
                 res.data.events.map(event => copiedCategoryEvents.push(event))
                 this.setState({eventsByCategory: copiedCategoryEvents})
+                this.setState({hasClickedCategory: true})
             })
     }
 
@@ -135,9 +137,31 @@ export default class Home extends Component {
             )
         }) : <p>No results for this zipcode</p>
 
+        let eventsByCategoryList = this.state.eventsByCategory ? this.state.eventsByCategory.map(event => {
+            return(
+                <Card className="eventbrite-event">
+                    <CardMedia >
+                        <img className="eventbrite-event-image" src={event.logo.original.url} />
+                    </CardMedia>
+                    <CardContent>
+                        <div className="event-content-div">
+                            <h3>{event.name.html}</h3> 
+                            <p>{event.summary}</p>
+                            <p>{event.start.local} - {event.end.local}</p>
+                            <p>{event.venue.address.name}</p>
+                            <p>{event.venue.address.address_1}</p> 
+                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                        </div>
+                    </CardContent>
+                </Card>
+            )
+        }) : <p>No results for this category</p>
+
+
         return (
             
-                this.state.hasZipcode ?
+                
+                    this.state.hasZipcode ?
                 <div id="home-page-container">
                 <Grid container>
                     <Grid item xs={12}>
@@ -158,7 +182,9 @@ export default class Home extends Component {
                                     {shopList}
                                 </div> */}
                                 <div>
-                                    {eventList}
+                                    {
+                                        this.state.hasClickedCategory ? eventsByCategoryList : eventList
+                                    }
                                 </div>
                             </Container>
                     </Grid>
@@ -170,6 +196,7 @@ export default class Home extends Component {
                 handleSearchChange={this.handleSearchChange}
                 handleSearchSubmit={this.handleSearchSubmit}
                 zipcode={this.state.zipcode}
+                
          />
             
         )
