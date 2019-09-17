@@ -5,19 +5,27 @@ import { Button, Container, Paper } from '@material-ui/core'
 export default class Categories extends Component {
     state = {
         categories: [],
-        categoryEvents: []
+        categoryEvents: [],
+        categoryIds: []
     }
 
     componentDidMount(){
         this.fetchAllCategories()
+        this.findCategoryIds()
+    }
+
+    findCategoryIds = () => {
+        let categorySet = Array.from(new Set(this.props.eventsByZipcode.map(event => event.category_id)))
+        this.setState({categoryIds: categorySet})
     }
 
     // gets all categories and sets them in state so i can loop through them to create a list of buttons
     fetchAllCategories = () => {
         axios.get('/api/fetchAllCategories')
             .then(res => {
-                console.log(res.data)
-                this.setState({categories: res.data.categories})
+                let categoriesWithEvents = res.data.categories.filter(category => this.state.categoryIds.includes(category.id))
+                console.log('test', categoriesWithEvents)
+                this.setState({categories: categoriesWithEvents})
             })
     }
 

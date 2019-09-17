@@ -180,7 +180,9 @@ export default class Home extends Component {
                         <Nav handleChangeZipClick={this.handleChangeZipClick} />
                     </Grid>
                     <Grid item xs={12}>
-                        <Categories handleCategoryClick={this.handleCategoryClick} />
+                        <Categories 
+                            handleCategoryClick={this.handleCategoryClick}
+                            eventsByZipcode={this.state.eventsByZipcode} />
                     </Grid>
                     {/* <Grid item xs={3}>
                         <CreatePopUpForm />
