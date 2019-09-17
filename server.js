@@ -16,7 +16,7 @@ dotenv.config();
 const { locationRouter } = require('./controllers/location.js')
 const { foodRouter } = require('./controllers/foodPopUp.js')
 const { shopRouter } = require('./controllers/shopPopUp.js')
-const { eventBrite, eventBriteCategories } = require('./controllers/eventbritePopUp.js')
+const { eventBrite, getEventsByCategory, grabAllCategories, getEventsByZipcode } = require('./controllers/eventbritePopUp.js')
 
 /* Step 3
  *
@@ -64,23 +64,35 @@ app.get('/api/fetchEvents', (req, res) => {
     res.json(events)
 })
 
-// let categories = [];
-// eventBriteCategories
-// .then(res => res.json())
-// .then(json => {
-//     categories = json
-// })
-
 app.get('/api/fetchEventCategories', (req, res) => {
-    console.log(req.query.categories)
-    const categories = [];
-    eventBriteCategories(req.query.categories)
+    getEventsByCategory(req.query.categories)
         .then(res => {
             return res.json()
         })
         .then((data) => { 
             res.json(data)
         })
+})
+
+app.get('/api/fetchEventsByZipcode', (req, res) => {
+    getEventsByZipcode(req.query.zipcode)
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            res.json(data)
+        })
+})
+
+let categories = [];
+grabAllCategories
+.then(res => res.json())
+.then(json => { 
+    categories = json
+})
+
+app.get('/api/fetchAllCategories', (req, res) => {
+    res.json(categories)
 })
 
 /* Step 5

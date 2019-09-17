@@ -6,10 +6,17 @@ const fetch = require('node-fetch');
 
 const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 
-const eventBriteCategories = (categoryId) => {
- return fetch(`https://www.eventbriteapi.com/v3/events/search/?categories=${categoryId}&token=${process.env.PRIVATE_TOKEN}`)
+const getEventsByCategory = (categoryId) => {
+ return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&categories=${categoryId}&token=${process.env.PRIVATE_TOKEN}`)
 }
-// TO DO: CREATE EVENT LISTENER FOR SEARCH QUERY 
+
+const grabAllCategories = fetch(`https://www.eventbriteapi.com/v3/categories/?token=${process.env.PRIVATE_TOKEN}`)
+
+const getEventsByZipcode = (zipcode) => {
+    return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=${zipcode}&token=${process.env.PRIVATE_TOKEN}`)
+}
+
+
 
 //  request({
 //         method: 'GET',
@@ -29,5 +36,7 @@ const eventBriteCategories = (categoryId) => {
 
 module.exports = {
     eventBrite,
-    eventBriteCategories
+    getEventsByCategory,
+    grabAllCategories,
+    getEventsByZipcode
 }
