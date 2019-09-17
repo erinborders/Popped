@@ -132,3 +132,8 @@ p {
 #search-bar-container {
   animation: Home-page 1s ease-in forwards;
 }
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+}
