@@ -41,6 +41,7 @@ export default class Categories extends Component {
                 <Container>
                     <Container className="category-container">
                         {categoryList}
+                        <button className="category-button" onClick={this.props.handleAllButton}>All</button>
                     </Container>
                 </Container>
             </div>

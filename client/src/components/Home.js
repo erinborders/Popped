@@ -81,6 +81,10 @@ export default class Home extends Component {
         this.setState({hasClickedCategory: false})
     }
 
+    handleAllButton = evt => {
+        this.setState({hasClickedCategory: false})
+    }
+
     // gets events by category and sets them in state
     handleCategoryClick = (evt) => {
         axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}&zipcode=${this.state.zipcode}`)
@@ -181,6 +185,7 @@ export default class Home extends Component {
                     </Grid>
                     <Grid item xs={12}>
                         <Categories 
+                            handleAllButton={this.handleAllButton}
                             handleCategoryClick={this.handleCategoryClick}
                             eventsByZipcode={this.state.eventsByZipcode} />
                     </Grid>
