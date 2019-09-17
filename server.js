@@ -16,7 +16,7 @@ dotenv.config();
 const { locationRouter } = require('./controllers/location.js')
 const { foodRouter } = require('./controllers/foodPopUp.js')
 const { shopRouter } = require('./controllers/shopPopUp.js')
-const { eventBrite } = require('./controllers/eventbritePopUp.js')
+const { eventBrite, eventBriteCategories } = require('./controllers/eventbritePopUp.js')
 
 /* Step 3
  *
@@ -64,6 +64,18 @@ app.get('/api/fetchEvents', (req, res) => {
     console.log('events', events)
     res.json(events)
 })
+
+// let categories = [];
+// eventBriteCategories
+// .then(res => res.json())
+// .then(json => {
+//     categories = json
+// })
+
+// app.get('/api/fetchCategories', (req, res) => {
+//     console.log('categories', categories)
+//     res.json(categories)
+// })
 
 /* Step 5
  *
