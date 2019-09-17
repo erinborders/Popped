@@ -6,9 +6,11 @@ export default class Categories extends Component {
 
     render() {
         let categoryNameList = this.props.categories.map(category => {
-            return(
-                <Button variant="outlined">{category}</Button>
-            )
+            if(category){
+                return(
+                    <Button variant="outlined">{category}</Button>
+                )
+            }
         })
 
         return (
