@@ -137,17 +137,17 @@ export default class Home extends Component {
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
                 <Card className="eventbrite-event">
-                    {/* <CardMedia >
+                    <CardMedia >
                         <img className="eventbrite-event-image" src={event.logo.original.url} />
-                    </CardMedia> */}
+                    </CardMedia>
                     <CardContent>
                         <div className="event-content-div">
                             <h3>{event.name.html}</h3> 
                             <p>{event.summary}</p>
                             <p>{event.start.local} - {event.end.local}</p>
-                            {/* <p>{event.venue.address.name}</p> */}
-                            {/* <p>{event.venue.address.address_1}</p>  */}
-                            {/* <p>Atlanta, GA, {event.venue.address.postal_code}</p> */}
+                            <p>{event.venue.address.name}</p>
+                            <p>{event.venue.address.address_1}</p> 
+                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
                         </div>
                     </CardContent>
                 </Card>
