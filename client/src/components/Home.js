@@ -14,7 +14,8 @@ export default class Home extends Component {
         events: [],
         eventsByZipcode: [],
         eventsByCategory: [],
-        hasSearched: false
+        hasSearched: false,
+        zipcode: ''
     }
 
     componentDidMount() {
@@ -50,6 +51,17 @@ export default class Home extends Component {
             .then(res => {
                 this.setState({events: res.data.events})
             })
+    }
+
+    handleSearchChange = evt => {
+        let zipcode = evt.target.value 
+        this.setState({zipcode})
+    }
+
+    handleSearchSubmit = evt => {
+        evt.preventDefault()
+
+        this.fetchEventsByZipcode(this.state.zipcode)
     }
 
     fetchEventsByZipcode = (zipcode) => {
@@ -155,6 +167,9 @@ export default class Home extends Component {
             <SearchBar 
                 searchedEvents={this.state.searchedEvents}
                 fetchEventsByZipcode={this.fetchEventsByZipcode}
+                handleSearchChange={this.handleSearchChange}
+                handleSearchSubmit={this.handleSearchSubmit}
+                zipcode={this.state.zipcode}
          />
             
         )
