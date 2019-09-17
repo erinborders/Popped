@@ -13,7 +13,7 @@ const getEventsByCategory = (categoryId) => {
 const grabAllCategories = fetch(`https://www.eventbriteapi.com/v3/categories/?token=${process.env.PRIVATE_TOKEN}`)
 
 const getEventsByZipcode = (zipcode) => {
-    return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=${zipcode}&token=${process.env.PRIVATE_TOKEN}`)
+    return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=${zipcode}&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 }
 
 
