@@ -78,6 +78,7 @@ export default class Home extends Component {
 
     handleChangeZipClick = evt => {
         this.setState({hasZipcode: false})
+        this.setState({hasClickedCategory: false})
     }
 
     // gets events by category and sets them in state
