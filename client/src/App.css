@@ -125,7 +125,7 @@ h2, h3 {
   border: 2px dotted aqua;
 }
 
-p {
+p, button {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -138,6 +138,26 @@ p {
   justify-content: space-between;
 }
 
+.category-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: aliceblue;
+}
+
+.category-button {
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
+  border-radius: 15%;
+}
+
 .category-button:focus {
   background-color: aqua;
+}
+
+#zipcode-button {
+  background-color: rgb(189, 220, 247);
+  border-radius: 30%;
+  padding: 5px;
 }
