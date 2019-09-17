@@ -137,3 +137,7 @@ p {
   display: flex;
   justify-content: space-between;
 }
+
+.category-button:focus {
+  background-color: aqua;
+}

@@ -24,7 +24,7 @@ export default class Categories extends Component {
     render() {
        let categoryList = this.state.categories.map(category => {
            return(
-               <button name={category.id} onClick={this.props.handleCategoryClick}>{category.name}</button>
+               <button className="category-button" name={category.id} onClick={this.props.handleCategoryClick}>{category.name}</button>
            )
        })
 
