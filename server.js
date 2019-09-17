@@ -61,7 +61,6 @@ eventBrite
 })
 
 app.get('/api/fetchEvents', (req, res) => {
-    console.log('events', events)
     res.json(events)
 })
 
@@ -72,10 +71,17 @@ app.get('/api/fetchEvents', (req, res) => {
 //     categories = json
 // })
 
-// app.get('/api/fetchCategories', (req, res) => {
-//     console.log('categories', categories)
-//     res.json(categories)
-// })
+app.get('/api/fetchEventCategories', (req, res) => {
+    console.log(req.query.categories)
+    const categories = [];
+    eventBriteCategories(req.query.categories)
+        .then(res => {
+            return res.json()
+        })
+        .then((data) => { 
+            res.json(data)
+        })
+})
 
 /* Step 5
  *
