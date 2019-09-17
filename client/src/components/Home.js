@@ -15,7 +15,6 @@ export default class Home extends Component {
         eventsByZipcode: [],
         eventsByCategory: [],
         hasClickedCategory: false,
-        hasSearched: false,
         zipcode: ''
     }
 
@@ -70,10 +69,15 @@ export default class Home extends Component {
             .then(res => {
                 console.log(res.data.events)
                 let zipcodeEvents = [...this.state.eventsByZipcode]
-                res.data.events.map(event => zipcodeEvents.push(event))
+                // res.data.events.map(event => zipcodeEvents.push(event))
+                zipcodeEvents = res.data.events
                 this.setState({eventsByZipcode: zipcodeEvents})
                 this.setState({hasZipcode: true})
             })
+    }
+
+    handleChangeZipClick = evt => {
+        this.setState({hasZipcode: false})
     }
 
     // gets events by category and sets them in state
@@ -81,7 +85,8 @@ export default class Home extends Component {
         axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}&zipcode=${this.state.zipcode}`)
             .then(res => {
                 let copiedCategoryEvents = [...this.state.eventsByCategory]
-                res.data.events.map(event => copiedCategoryEvents.push(event))
+                // res.data.events.map(event => copiedCategoryEvents.push(event))
+                copiedCategoryEvents = res.data.events
                 this.setState({eventsByCategory: copiedCategoryEvents})
                 this.setState({hasClickedCategory: true})
             })
@@ -117,12 +122,15 @@ export default class Home extends Component {
         // })
 
 
-        let eventList =  this.state.eventsByZipcode ? this.state.eventsByZipcode.map(event => {
+        let eventList =  this.state.eventsByZipcode[0] ? this.state.eventsByZipcode.map(event => {
             return(
                 <Card className="eventbrite-event">
-                    <CardMedia >
+                    {
+                        event.logo ? 
+                        <CardMedia >
                         <img className="eventbrite-event-image" src={event.logo.original.url} />
-                    </CardMedia>
+                    </CardMedia> : null
+                    }
                     <CardContent>
                         <div className="event-content-div">
                             <h3>{event.name.html}</h3> 
@@ -130,19 +138,22 @@ export default class Home extends Component {
                             <p>{event.start.local} - {event.end.local}</p>
                             <p>{event.venue.address.name}</p>
                             <p>{event.venue.address.address_1}</p> 
-                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                            <p>{event.venue.address.city}, {event.venue.address.region}, {event.venue.address.postal_code}</p>
                         </div>
                     </CardContent>
                 </Card>
             )
         }) : <p>No results for this zipcode</p>
 
-        let eventsByCategoryList = this.state.eventsByCategory ? this.state.eventsByCategory.map(event => {
+        let eventsByCategoryList = this.state.eventsByCategory[0] ? this.state.eventsByCategory.map(event => {
             return(
                 <Card className="eventbrite-event">
-                    <CardMedia >
+                    {
+                        event.logo ? 
+                        <CardMedia >
                         <img className="eventbrite-event-image" src={event.logo.original.url} />
-                    </CardMedia>
+                    </CardMedia> : null
+                    }
                     <CardContent>
                         <div className="event-content-div">
                             <h3>{event.name.html}</h3> 
@@ -150,12 +161,12 @@ export default class Home extends Component {
                             <p>{event.start.local} - {event.end.local}</p>
                             <p>{event.venue.address.name}</p>
                             <p>{event.venue.address.address_1}</p> 
-                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
+                            <p>{event.venue.address.city}, {event.venue.address.region}, {event.venue.address.postal_code}</p>
                         </div>
                     </CardContent>
                 </Card>
             )
-        }) : <p>No results for this category</p>
+        }) : <div>No results for this category</div>
 
 
         return (
@@ -165,15 +176,15 @@ export default class Home extends Component {
                 <div id="home-page-container">
                 <Grid container>
                     <Grid item xs={12}>
-                        <Nav />
+                        <Nav handleChangeZipClick={this.handleChangeZipClick} />
                     </Grid>
                     <Grid item xs={12}>
                         <Categories handleCategoryClick={this.handleCategoryClick} />
                     </Grid>
-                    <Grid item xs={3}>
+                    {/* <Grid item xs={3}>
                         <CreatePopUpForm />
-                    </Grid>
-                    <Grid item xs={9}>
+                    </Grid> */}
+                    <Grid item xs={12}>
                             <Container id="events-list">
                                 {/* <div>
                                     {foodList}
