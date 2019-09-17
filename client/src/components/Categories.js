@@ -4,40 +4,36 @@ import { Button, Container, Paper } from '@material-ui/core'
 
 export default class Categories extends Component {
     state = {
+        categories: [],
         categoryEvents: []
     }
 
-    handleClick = (evt) => {
-        console.log(evt.target.name)
-        axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}`)
+    componentDidMount(){
+        this.fetchAllCategories()
+    }
+
+    // gets all categories and sets them in state so i can loop through them to create a list of buttons
+    fetchAllCategories = () => {
+        axios.get('/api/fetchAllCategories')
             .then(res => {
-                let copiedCategoryEvents = [...this.state.categoryEvents]
-                res.data.events.map(event => copiedCategoryEvents.push(event))
-                this.setState({categoryEvents: copiedCategoryEvents})
+                console.log(res.data)
+                this.setState({categories: res.data.categories})
             })
     }
 
     render() {
-       let idList = Array.from(new Set(this.props.categories.map(category => category ? category.id : null))).map(num => {
+       let categoryList = this.state.categories.map(category => {
            return(
-               <button name={num} onClick={this.handleClick}>{num}</button>
+               <button name={category.id} onClick={this.props.handleCategoryClick}>{category.name}</button>
            )
        })
-
-       let nameList = Array.from(new Set(this.props.categories.map(category => category ? category.name : null))).map(name => {
-        return(
-            <button onClick={this.handleClick}>{name}</button>
-        )
-    })
 
         return (
             <div>
                 <Container>
                     <Paper>
                         <p>Categories</p>
-                        {/* {categoryNameList} */}
-                        {idList}
-                        {/* {nameList} */}
+                        {categoryList}
                     </Paper>
                 </Container>
             </div>

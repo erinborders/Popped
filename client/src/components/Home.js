@@ -12,9 +12,8 @@ export default class Home extends Component {
         foodPopUps: [],
         shopPopUps: [],
         events: [],
-        categories: [],
-        searchedEvents: [],
-        hasSearched: false
+        eventsByZipcode: [],
+        eventsByCategory: []
     }
 
     componentDidMount() {
@@ -22,7 +21,6 @@ export default class Home extends Component {
         this.fetchFoodPopUps()
         this.fetchShopPopUps()
         this.fetchEvents()
-        this.fetchCategories()
     }
 
     fetchLocations = () => {
@@ -53,33 +51,24 @@ export default class Home extends Component {
             })
     }
 
-    fetchCategories = () => {
-        axios.get('/api/fetchEvents')
+    fetchEventsByZipcode = (zipcode) => {
+        axios.get(`/api/fetchEventsByZipcode/?zipcode=${zipcode}`)
             .then(res => {
-                let categories = res.data.events.map(event => {
-                    if(event.category) {
-                        return event.category
-                    }
-                })
-                this.setState({categories})
+                console.log(res.data.events)
+                let zipcodeEvents = [...this.state.eventsByZipcode]
+                res.data.events.map(event => zipcodeEvents.push(event))
+                this.setState({eventsByZipcode: zipcodeEvents})
             })
     }
 
-    fetchSearchedEvents = () => {
-        let searchedEvents = this.state.events.filter(event => event.venue.address.postal_code)
-        console.log(searchedEvents)
-        this.setState({searchedEvents: searchedEvents})
-    }
-
-    handleSearchChange = evt => {
-        let zipcode = evt.target.value 
-        this.setState({zipcode})
-    }
-
-    handleSearchSubmit = evt => {
-        evt.preventDefault()
-
-        this.fetchSearchedEvents()
+    // gets events by category and sets them in state
+    handleCategoryClick = (evt) => {
+        axios.get(`/api/fetchEventCategories/?categories=${evt.target.name}`)
+            .then(res => {
+                let copiedCategoryEvents = [...this.state.eventsByCategory]
+                res.data.events.map(event => copiedCategoryEvents.push(event))
+                this.setState({eventsByCategory: copiedCategoryEvents})
+            })
     }
 
     render() {
@@ -111,25 +100,6 @@ export default class Home extends Component {
         //     )
         // })
 
-        let searchedEventsList = this.state.searchedEvents ? this.state.searchedEvents.map(event => {
-            return (
-                <Card className="eventbrite-event">
-                    <CardMedia >
-                        <img className="eventbrite-event-image" src={event.logo.original.url} />
-                    </CardMedia>
-                    <CardContent>
-                        <div className="event-content-div">
-                            <h3>{event.name.html}</h3> 
-                            <p>{event.summary}</p>
-                            <p>{event.start.local} - {event.end.local}</p>
-                            <p>{event.venue.address.name}</p>
-                            <p>{event.venue.address.address_1}</p> 
-                            <p>Atlanta, GA, {event.venue.address.postal_code}</p>
-                        </div>
-                    </CardContent>
-                </Card>
-            )
-        }) : <div><p>No results found</p></div>
 
         let eventList =  this.state.events ? this.state.events.map(event => {
             return(
@@ -158,18 +128,13 @@ export default class Home extends Component {
                         <Nav />
                     </Grid>
                     <Grid item xs={12}>
-                        <Categories categories={this.state.categories} />
+                        <Categories handleCategoryClick={this.handleCategoryClick} />
                     </Grid>
                     <Grid item xs={3}>
                         <SearchBar 
                             searchedEvents={this.state.searchedEvents}
-                            fetchSearchedEvents={this.fetchSearchedEvents}
-                            handleSearchChange={this.handleSearchChange}
-                            handleSearchSubmit={this.handleSearchSubmit} />
-                        {/* TO DO: PUT LOCATIONS IN SEARCH BAR COMPONENT */}
-                            {/* <div>
-                                {locationsList}
-                            </div> */}
+                            fetchEventsByZipcode={this.fetchEventsByZipcode}
+                         />
                         <CreatePopUpForm />
                     </Grid>
                     <Grid item xs={9}>
