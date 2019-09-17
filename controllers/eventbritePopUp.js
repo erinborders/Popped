@@ -4,7 +4,7 @@ const request = require('request');
 const fetch = require('node-fetch');
 
 
-const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue&expand=category&token=${process.env.PRIVATE_TOKEN}`)
+const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 
 // const eventBriteCategories = fetch(`https://www.eventbriteapi.com/v3/categories/${category}/?token=${process.env.PRIVATE_TOKEN}`)
 
@@ -27,6 +27,6 @@ const eventBrite = fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%
 
 
 module.exports = {
-    eventBrite,
+    eventBrite
     // eventBriteCategories
 }
