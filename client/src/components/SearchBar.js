@@ -10,7 +10,7 @@ export default class SearchBar extends Component {
         return (
             <Container id="search-bar-container">
                 <Paper id="search-bar">
-                    <h2>Search</h2>
+                    <h2>Search For Pop Ups in Your Area</h2>
                     <form onSubmit={this.props.handleSearchSubmit}>
                         <SearchIcon />
                         <Input
