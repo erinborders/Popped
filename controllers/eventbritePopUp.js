@@ -18,20 +18,6 @@ const getEventsByZipcode = (zipcode) => {
 
 
 
-//  request({
-//         method: 'GET',
-//         url: `https://www.eventbriteapi.com/v3/events/search?q=pop-up&sort_by=date`,
-//         headers: {
-//           'Authorization': 'Bearer ' + process.env.PRIVATE_TOKEN,
-//           'Content-Type': 'application/json'
-//         }}, function (error, response, body) {
-//             console.log('body',body)
-//             events = body
-//       })
-
-
-
-
 
 
 module.exports = {
