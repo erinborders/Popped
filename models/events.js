@@ -1,7 +1,11 @@
 const mongoose = require('./connection.js')
 
 const EventSchema = new mongoose.Schema({
-    
+    events: [{
+        name: {
+            text: String
+        }
+    }]
 })
 
 const EventCollection = mongoose.model('Events', EventSchema)
