@@ -17,7 +17,8 @@ function getAllEvents(){
 function deleteAllEvents(){
     return EventCollection.deleteMany()
 }
-
+//TO DO: try calling delete all events in update all events function
+//TO DO: try putting logic to check for changes in collection here too
 function updateAllEvents(events){
     return EventCollection.insertMany(events)
 }
