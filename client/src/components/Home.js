@@ -138,7 +138,7 @@ export default class Home extends Component {
                     }
                     <CardContent>
                         <div className="event-content-div">
-                            <h3>{event.name.html}</h3> 
+                            <h3>{event.name.text}</h3> 
                             <p>{event.description.text}</p>
                             <p>{event.start.local} - {event.end.local}</p>
                             <p>{event.venue.address.name}</p>
