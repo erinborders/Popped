@@ -2,8 +2,9 @@ const mongoose = require('./connection.js')
 
 const EventSchema = new mongoose.Schema({
     eventBriteId: String,
+    eventBriteCreated: Date,
     eventBriteChanged: Date,
-}, {timestamps:true})
+})
 
 const EventCollection = mongoose.model('Events', EventSchema)
 
@@ -14,12 +15,12 @@ function getAllEvents(){
 function deleteAllEvents(){
     return EventCollection.deleteMany()
 }
-//TO DO: try calling delete all events in update all events function
-//TO DO: try putting logic to check for changes in collection here too
+
 function updateAllEvents(events){
     const modifiedEvents = events.map((v) => {
         v.eventBriteId = v.id
-        v.eventBriteChanged = v.changed,
+        v.eventBriteChanged = v.changed
+        v.eventBriteCreated = v.created
         console.log('eventBriteChanged', v.eventBriteChanged)
         return v
     })
