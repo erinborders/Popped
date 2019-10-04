@@ -28,6 +28,7 @@ eventRouter.delete('/', (req, res) => {
 })
 
 //updating the array of events from eventbrite
+//TO DO: schedule a post request so that this happens once a day
 eventRouter.post('/', (req, res) => {
     let events = [];
     fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
@@ -45,6 +46,8 @@ eventRouter.post('/', (req, res) => {
 
 })
 
+//TO DO: incorporate mailchimp api
+//TO DO: look for events in my date range, make call to eventbrite api for info on these events, then send those in mailchimp newsletter
 
 
 

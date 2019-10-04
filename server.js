@@ -98,6 +98,12 @@ app.get('/api/fetchAllCategories', (req, res) => {
     res.json(categories)
 })
 
+//keep app awake
+var http = require("http");
+setInterval(function() {
+    http.get("http://poppedpopups.herokuapp.com");
+}, 300000); // every 5 minutes 
+
 /* Step 5
  *
  * add catch all route to serve up the built react app for any request not made to our
