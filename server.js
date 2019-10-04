@@ -16,6 +16,7 @@ dotenv.config();
 const { locationRouter } = require('./controllers/location.js')
 const { foodRouter } = require('./controllers/foodPopUp.js')
 const { shopRouter } = require('./controllers/shopPopUp.js')
+const { eventRouter }  = require('./controllers/events.js')
 const { eventBrite, getEventsByCategory, grabAllCategories, getEventsByZipcode } = require('./controllers/eventbritePopUp.js')
 
 /* Step 3
@@ -51,6 +52,8 @@ app.use(express.static(`${__dirname}/client/build`))
 app.use('/api/locations', locationRouter)
 app.use('/api/food', foodRouter)
 app.use('/api/shops', shopRouter)
+app.use('/api/eventsForNewsletter', eventRouter)
+
 
 
 let events = [];

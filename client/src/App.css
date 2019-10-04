@@ -184,3 +184,22 @@ p, button {
   text-align: center;
   background-color: rgb(93, 255, 255);
 }
+
+.popup-alert-signup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  background-color: aqua;
+  padding: 5rem;
+  animation: Alert-signup 1s ease-in-out forwards;
+}
+
+@keyframes Alert-signup {
+  from {
+    top: 0
+  }
+  to {
+    top: 50%
+  }
+}
