@@ -17,7 +17,10 @@ const getEventsByZipcode = (zipcode) => {
     return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=${zipcode}&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
 }
 
-
+//to keep app from going to sleep
+setInterval(function() {
+    http.get("https://poppedpopups.herokuapp.com");
+}, 1800000);
 
 
 module.exports = {
