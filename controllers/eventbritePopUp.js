@@ -20,7 +20,7 @@ const getEventsByZipcode = (zipcode) => {
 //to keep app from going to sleep
 setInterval(function() {
     http.get("https://poppedpopups.herokuapp.com");
-}, 1800000);
+}, 1800000); //ping every 30 min
 
 
 module.exports = {

@@ -18,38 +18,40 @@ eventRouter.get('/', (req, res) => {
 })
 
 //TO DO: figure out what's wrong with this
-eventRouter.delete('/', (req, res) => {
+eventRouter.delete('/delete', (req, res) => {
     eventApi.deleteAllEvents()
-    .catch(err => {
-        console.log('error', err)
-    })
+        .catch(err => {
+            console.log('error', err)
+        })
+
+    res.status(200).end()
 })
 
 //updating the array of events from eventbrite
-eventRouter.post('/', (req, res) => {
+eventRouter.post('/post', (req, res) => {
     //figure out a way to delete previous events
     // eventApi.deleteAllEvents()
-    
+
     let events = [];
     fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
-    .then(res => res.json())
-    .then(json => {
-        events = json
-        eventApi.updateAllEvents(events)
-    })
-    // .then(() => {
-    //     eventApi.updateAllEvents(events)
-    // })
-    .then(newEvents => {
-        res.json(newEvents)
-    })
-    .catch(err => {
-        console.log('error', err)
-    })
+        .then(res => res.json())
+        .then(json => {
+            events = json.events
+            eventApi.updateAllEvents(events)
+        })
+        // .then(() => {
+        //     eventApi.updateAllEvents(events)
+        // })
+        .then(newEvents => {
+            res.json(newEvents)
+        })
+        .catch(err => {
+            console.log('error', err)
+        })
 
-    })
+})
 
-    
+
 
 
 module.exports = {
