@@ -18,6 +18,7 @@ const { foodRouter } = require('./controllers/foodPopUp.js')
 const { shopRouter } = require('./controllers/shopPopUp.js')
 const { eventRouter }  = require('./controllers/events.js')
 const { eventBrite, getEventsByCategory, grabAllCategories, getEventsByZipcode } = require('./controllers/eventbritePopUp.js')
+const { addEmailToNewsletter } = require('./controllers/mailChimp.js')
 
 /* Step 3
  *
@@ -96,6 +97,18 @@ grabAllCategories
 
 app.get('/api/fetchAllCategories', (req, res) => {
     res.json(categories)
+})
+
+//add email to mailchimp newsletter
+app.get('/api/addSubscriber', (req, res) => {
+    //TO DO: make sure emailaddress is correct and check to make sure you need all these .thens
+    addEmailToNewsletter(req.body.emailAddress)
+    .then(res => {
+        return res.json()
+    })
+    .then(data => {
+        res.json(data)
+    })
 })
 
 //keep app awake
