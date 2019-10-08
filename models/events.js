@@ -1,4 +1,5 @@
 const mongoose = require('./connection.js')
+const moment = require('moment');
 
 const EventSchema = new mongoose.Schema({
     eventBriteId: String,
@@ -28,8 +29,20 @@ function updateAllEvents(events){
 
 }
 
+//get newest events 
+function grabEventsForNewsletter(){
+    console.log('date', moment().subtract(6, 'days').toDate())
+    let afterDate = moment().subtract(6, 'days').toDate()
+    return EventCollection.find({
+        eventBriteCreated: {
+            $gte: afterDate
+        }
+    })
+}
+
 module.exports = {
     getAllEvents,
     deleteAllEvents,
-    updateAllEvents
+    updateAllEvents,
+    grabEventsForNewsletter
 }
