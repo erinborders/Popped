@@ -20,9 +20,6 @@ export default class PopUpAlert extends Component {
         evt.preventDefault()
 
         axios.post(`/api/addSubscriber/?emailAddress=${this.state.newSubscriber.emailAddress}&name=${this.state.newSubscriber.name}`)
-            .then(() => {
-                console.log('add subscriber worked')
-            })
     }
     
     render() {
