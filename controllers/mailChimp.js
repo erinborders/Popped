@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-
+//adds new subscriber to newsletter
 const addEmailToNewsletter = (email) => {
 
     var options = { method: 'POST',
@@ -24,6 +24,8 @@ const addEmailToNewsletter = (email) => {
     return fetch('https://us20.api.mailchimp.com/3.0/lists/84613382fc/members', Object.assign({}, options))
 
 }
+
+
 
 module.exports = {
     addEmailToNewsletter

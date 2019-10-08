@@ -48,9 +48,19 @@ eventRouter.post('/', (req, res) => {
 
 })
 
-//TO DO: incorporate mailchimp api
-//TO DO: look for events in my date range, make call to eventbrite api for info on these events, then send those in mailchimp newsletter
-
+//TO DO: make call to eventbrite api for info on these events, then send those in mailchimp newsletter
+eventRouter.get('/newEvents', (req, res) => {
+    return eventApi.grabEventsForNewsletter()
+        // .then(v => v.json())
+        .then(newsLetterEvents => {
+            res.json(newsLetterEvents)
+        })
+        .catch(err => {
+            console.log('error', err)
+        })
+    
+    res.status(200).end()
+})
 
 
 module.exports = {
