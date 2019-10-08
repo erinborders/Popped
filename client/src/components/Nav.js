@@ -11,6 +11,10 @@ export default class Nav extends Component {
         this.setState({wantsAlerts: true})
     }
 
+    closePopUp = () => {
+        this.setState({wantsAlerts: false})
+    }
+
     render() {
         return (
             <div>
@@ -26,7 +30,7 @@ export default class Nav extends Component {
 
                 {
                     this.state.wantsAlerts ?
-                    <PopUpAlert /> : null
+                    <PopUpAlert closePopUp={this.closePopUp}/> : null
                 }
             </div>
         )

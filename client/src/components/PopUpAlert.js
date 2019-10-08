@@ -20,12 +20,17 @@ export default class PopUpAlert extends Component {
         evt.preventDefault()
 
         axios.post(`/api/addSubscriber/?emailAddress=${this.state.newSubscriber.emailAddress}&name=${this.state.newSubscriber.name}`)
+            .then(() => {
+                this.props.closePopUp()
+            })
     }
     
     render() {
         return (
             <div className="popup-alert-signup">
-                <h1>Test</h1>
+                <h1>Coming Soon!</h1>
+                <p>Add your email here to join our list of subscribers and get notified about new pop up events as soon as the newsletter is available!</p>
+
                 <form onSubmit={this.handleNewsletterSubmit} autoComplete="off">
                     <TextField 
                         required
