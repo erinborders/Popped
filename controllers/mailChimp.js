@@ -1,7 +1,9 @@
 //TO DO: make email the req body email address
 //TO DO: make form in front end for email address
+const fetch = require('node-fetch')
+
 const addEmailToNewsletter = (email) => {
-    var request = require("request");
+    // var request = require("request-promise");
 
     var options = { method: 'POST',
     url: 'https://us20.api.mailchimp.com/3.0/lists/84613382fc/members',
@@ -18,14 +20,20 @@ const addEmailToNewsletter = (email) => {
         'User-Agent': 'PostmanRuntime/7.16.3',
         Authorization: 'Basic YW55c3RyaW5nOmY4YmQyYmEzYmE5MGVmNGYwYzA4MDA2NzViMjNhYmNiLXVzMjA=',
         'Content-Type': 'application/json' },
-    body: { email_address: email, status: 'subscribed' },
+    body: { "email_address": email, "status": 'subscribed' },
     json: true };
 
-    request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+    // // return request(options, function (error, response, body) {
+    // // if (error) throw new Error(error);
 
-    console.log(body);
-    });
+    // // console.log(body);
+    // // });
+
+    // let result = await request(options)
+    // console.log('result', result)
+    // return result
+    console.log('email', email)
+    return fetch('https://us20.api.mailchimp.com/3.0/lists/84613382fc/members', Object.assign(options))
 
 }
 
