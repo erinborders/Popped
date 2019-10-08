@@ -1,9 +1,8 @@
-//TO DO: make email the req body email address
-//TO DO: make form in front end for email address
 const fetch = require('node-fetch')
 
+
 const addEmailToNewsletter = (email) => {
-    
+
     var options = { method: 'POST',
     url: 'https://us20.api.mailchimp.com/3.0/lists/84613382fc/members',
     headers: 
