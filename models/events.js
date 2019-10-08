@@ -26,17 +26,6 @@ function updateAllEvents(events){
     })
     return EventCollection.insertMany(modifiedEvents)
 
-    // modifiedEvents.forEach(v => {
-    //     try {
-    //         EventCollection.update( 
-    //             { eventBriteChanged : v.eventBriteChanged},
-    //             v,
-    //             { upsert: true } )
-    //     } catch(e) {
-    //         console.log(e)
-    //     }
-    // });
-    //return modifiedEvents;
 }
 
 module.exports = {
