@@ -107,12 +107,10 @@ app.post('/api/addSubscriber', (req, res) => {
     const email = req.query.emailAddress 
     const name = req.query.name
 
-    
-
     addEmailToNewsletter(email)
-        .then(res => res.json())
+        .then(v => v.json())
         .then(data => res.json(data))
- 
+        .catch(res.send) 
 })
 
 //keep app awake
