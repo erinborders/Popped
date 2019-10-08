@@ -102,13 +102,17 @@ app.get('/api/fetchAllCategories', (req, res) => {
 //add email to mailchimp newsletter
 app.post('/api/addSubscriber', (req, res) => {
     //TO DO: make sure emailaddress is correct and check to make sure you need all these .thens
-    addEmailToNewsletter(req.body.emailAddress)
-    .then(res => {
-        return res.json()
-    })
-    .then(data => {
-        res.json(data)
-    })
+    
+    console.log('request is reaching server')
+    const email = req.query.emailAddress 
+    const name = req.query.name
+
+    
+
+    addEmailToNewsletter(email)
+        .then(res => res.json())
+        .then(data => res.json(data))
+ 
 })
 
 //keep app awake
