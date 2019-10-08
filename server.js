@@ -100,7 +100,7 @@ app.get('/api/fetchAllCategories', (req, res) => {
 })
 
 //add email to mailchimp newsletter
-app.get('/api/addSubscriber', (req, res) => {
+app.post('/api/addSubscriber', (req, res) => {
     //TO DO: make sure emailaddress is correct and check to make sure you need all these .thens
     addEmailToNewsletter(req.body.emailAddress)
     .then(res => {
