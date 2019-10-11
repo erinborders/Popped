@@ -22,7 +22,7 @@ export default class PopUpAlert extends Component {
 
         axios.post(`/api/addSubscriber/?emailAddress=${this.state.newSubscriber.emailAddress}&name=${this.state.newSubscriber.name}`)
             .then(() => {
-                this.props.closePopUp()
+                this.props.close()
             })
     }
     

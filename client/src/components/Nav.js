@@ -23,7 +23,7 @@ export default class Nav extends Component {
                         <h2 id="nav-logo">Popped</h2>
                         <div>
                             <button id="zipcode-button" onClick={this.props.handleChangeZipClick}>Change Zipcode</button>
-                            <button onClick={this.open}>Get New Pop Up Alerts</button>
+                            <button id="popup-alert-button" onClick={this.open}>Get New Pop Up Alerts</button>
                         </div>
                     </Toolbar>
                 </AppBar>
