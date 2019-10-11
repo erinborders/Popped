@@ -21,6 +21,10 @@ body {
   animation: Home-page 1s ease-in forwards;
 }
 
+.App {
+  background-color: aqua;
+}
+
 .fade-enter {
   opacity: 0;
 }
@@ -133,6 +137,8 @@ p, button {
 
 #search-bar-container {
   animation: Home-page 1s ease-in forwards;
+  height: 100vh;
+  width: 100vw;
 }
 
 #nav-logo {
