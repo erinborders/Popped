@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { TextField } from '@material-ui/core'
+import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
 
 export default class PopUpAlert extends Component {
@@ -27,30 +28,34 @@ export default class PopUpAlert extends Component {
     
     render() {
         return (
-            <div className="popup-alert-signup">
-                <h1>Coming Soon!</h1>
-                <p>Add your email here to join our list of subscribers and get notified about new pop up events as soon as the newsletter is available!</p>
+            <Modal show={this.props.wantsAlerts} onHide={this.props.close} >
+                <Modal.Header closeButton>
+                    <Modal.Title><h1>Coming Soon!</h1></Modal.Title>
+                </Modal.Header>
+                    <Modal.Body>
+                        <p>Add your email here to join our list of subscribers and get notified about new pop up events as soon as the newsletter is available!</p>
 
-                <form onSubmit={this.handleNewsletterSubmit} autoComplete="off">
-                    <TextField 
-                        required
-                        id="name"
-                        label= "First and Last Name"
-                        value={this.state.newSubscriber.name}
-                        margin="normal"
-                        onChange={this.handleNewsletterChange}
-                    />
-                    <TextField
-                        required
-                        id="emailAddress"
-                        label="Email Address"
-                        value={this.state.newSubscriber.emailAddress}
-                        margin="normal"
-                        onChange={this.handleNewsletterChange}
-                        />
-                    <button type="submit">Get Pop Up Alerts</button>
-                </form>
-            </div>
+                        <form onSubmit={this.handleNewsletterSubmit} autoComplete="off">
+                            <TextField 
+                                required
+                                id="name"
+                                label= "First and Last Name"
+                                value={this.state.newSubscriber.name}
+                                margin="normal"
+                                onChange={this.handleNewsletterChange}
+                            />
+                            <TextField
+                                required
+                                id="emailAddress"
+                                label="Email Address"
+                                value={this.state.newSubscriber.emailAddress}
+                                margin="normal"
+                                onChange={this.handleNewsletterChange}
+                                />
+                            <button type="submit">Get Pop Up Alerts</button>
+                        </form>
+                    </Modal.Body>
+            </Modal>
         )
     }
 }
