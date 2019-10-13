@@ -47,7 +47,8 @@ export default class PopUpAlert extends Component {
                     <Modal.Title><h1>Coming Soon!</h1></Modal.Title>
                 </Modal.Header>
                     <Modal.Body>
-                        <p>Add your email here to join our list of subscribers and get notified about new pop up events as soon as the newsletter is available!</p>
+                        <p>Add your email here to join our list of subscribers and get 
+                            notified about new pop up events before anyone else!</p>
 
                         <form onSubmit={this.handleNewsletterSubmit} autoComplete="off">
                             <TextField 
