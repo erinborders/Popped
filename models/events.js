@@ -41,6 +41,8 @@ function grabEventsForNewsletter(){
     })
 }
 
+//TO DO: add option to get specific categories
+
 module.exports = {
     getAllEvents,
     deleteAllEvents,
