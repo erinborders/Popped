@@ -1,6 +1,6 @@
 // const express = require('express')
 // const eventBriteRouter = express.Router()
-const request = require('request');
+
 const fetch = require('node-fetch');
 
 // TO DO: DELETE THIS 

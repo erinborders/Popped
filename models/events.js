@@ -1,5 +1,7 @@
 const mongoose = require('./connection.js')
+const moment = require('moment');
 
+//TO DO: add properties in schema to hold event info
 const EventSchema = new mongoose.Schema({
     eventBriteId: String,
     eventBriteCreated: Date,
@@ -26,21 +28,22 @@ function updateAllEvents(events){
     })
     return EventCollection.insertMany(modifiedEvents)
 
-    // modifiedEvents.forEach(v => {
-    //     try {
-    //         EventCollection.update( 
-    //             { eventBriteChanged : v.eventBriteChanged},
-    //             v,
-    //             { upsert: true } )
-    //     } catch(e) {
-    //         console.log(e)
-    //     }
-    // });
-    //return modifiedEvents;
+}
+
+//get newest events 
+function grabEventsForNewsletter(){
+    console.log('date', moment().subtract(6, 'days').toDate())
+    let afterDate = moment().subtract(6, 'days').toDate()
+    return EventCollection.find({
+        eventBriteCreated: {
+            $gte: afterDate
+        }
+    })
 }
 
 module.exports = {
     getAllEvents,
     deleteAllEvents,
-    updateAllEvents
+    updateAllEvents,
+    grabEventsForNewsletter
 }

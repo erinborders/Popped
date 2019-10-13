@@ -17,7 +17,6 @@ eventRouter.get('/', (req, res) => {
         })
 })
 
-//TO DO: figure out what's wrong with this
 eventRouter.delete('/', (req, res) => {
     eventApi.deleteAllEvents()
         .catch(err => {
@@ -31,8 +30,11 @@ eventRouter.delete('/', (req, res) => {
 //TO DO: schedule a post request so that this happens once a day
 eventRouter.post('/', (req, res) => {
     let events = [];
-    fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
-        .then(res => res.json())
+    return eventApi.deleteAllEvents()
+        .then(() =>{
+            return fetch(`https://www.eventbriteapi.com/v3/events/search/?q=pop%20up&location.address=Atlanta&expand=venue,category&token=${process.env.PRIVATE_TOKEN}`)
+        })
+        .then(v => v.json())
         .then(json => {
             events = json.events
             eventApi.updateAllEvents(events)
@@ -46,9 +48,19 @@ eventRouter.post('/', (req, res) => {
 
 })
 
-//TO DO: incorporate mailchimp api
-//TO DO: look for events in my date range, make call to eventbrite api for info on these events, then send those in mailchimp newsletter
-
+//TO DO: add new events to mailchimp newsletter content
+eventRouter.get('/newEvents', (req, res) => {
+    return eventApi.grabEventsForNewsletter()
+        // .then(v => v.json())
+        .then(newsLetterEvents => {
+            res.json(newsLetterEvents)
+        })
+        .catch(err => {
+            console.log('error', err)
+        })
+    
+    res.status(200).end()
+})
 
 
 module.exports = {
