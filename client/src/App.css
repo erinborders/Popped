@@ -192,6 +192,21 @@ p, button {
   background-color: rgb(93, 255, 255);
 }
 
+#subscribe-button{
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid aqua;
+  margin: 0.3em;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #2e6ff1;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+}
+
 .popup-alert-signup {
   position: absolute;
   top: 50%;

@@ -66,7 +66,7 @@ export default class PopUpAlert extends Component {
                                 margin="normal"
                                 onChange={this.handleNewsletterChange}
                                 />
-                            <button type="submit">Get Pop Up Alerts</button>
+                            <button id="subscribe-button" type="submit">Get Pop Up Alerts</button>
                         </form>
                     </Modal.Body>
             </Modal>
