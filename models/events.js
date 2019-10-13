@@ -1,6 +1,7 @@
 const mongoose = require('./connection.js')
 const moment = require('moment');
 
+//TO DO: add properties in schema to hold event info
 const EventSchema = new mongoose.Schema({
     eventBriteId: String,
     eventBriteCreated: Date,
