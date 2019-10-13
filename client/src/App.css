@@ -166,7 +166,7 @@ p, button {
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: bold;
   color: #2e6ff1;
   text-align: center;
   background-color: rgb(0, 255, 255);
@@ -187,6 +187,7 @@ p, button {
   text-decoration: none;
   font-weight: 300;
   color: #2e6ff1;
+  font-weight: bold;
   text-align: center;
   background-color: rgb(93, 255, 255);
 }
