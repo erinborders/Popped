@@ -29,7 +29,8 @@ export default class Nav extends Component {
                 </AppBar>
                     <PopUpAlert 
                         wantsAlerts={this.state.wantsAlerts}
-                        close={this.close} />
+                        close={this.close}
+                        />
                 {/* {
                     this.state.wantsAlerts ?
                     <PopUpAlert closePopUp={this.closePopUp}/> : null

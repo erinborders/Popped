@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { TextField } from '@material-ui/core'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
+import SubscriptionConfirmation from './SubscriptionConfirmation.js'
 
 export default class PopUpAlert extends Component {
     state = {
         newSubscriber: {
             name: '',
             emailAddress: ''
-        }
+        },
+        confirmed: false
     }
 
     handleNewsletterChange = evt => {
@@ -17,17 +19,29 @@ export default class PopUpAlert extends Component {
         this.setState({newSubscriber})
     }
 
+    openConfirmation = () => {
+        this.setState({confirmed: true})
+    }
+
+    closeConfirmation = () => {
+        this.setState({confirmed: false})
+    }
+
     handleNewsletterSubmit = evt => {
         evt.preventDefault()
 
         axios.post(`/api/addSubscriber/?emailAddress=${this.state.newSubscriber.emailAddress}&name=${this.state.newSubscriber.name}`)
             .then(() => {
                 this.props.close()
+                this.openConfirmation()
             })
     }
+
     
     render() {
         return (
+            <div>
+
             <Modal show={this.props.wantsAlerts} onHide={this.props.close} >
                 <Modal.Header closeButton>
                     <Modal.Title><h1>Coming Soon!</h1></Modal.Title>
@@ -43,7 +57,7 @@ export default class PopUpAlert extends Component {
                                 value={this.state.newSubscriber.name}
                                 margin="normal"
                                 onChange={this.handleNewsletterChange}
-                            />
+                                />
                             <TextField
                                 required
                                 id="emailAddress"
@@ -56,6 +70,11 @@ export default class PopUpAlert extends Component {
                         </form>
                     </Modal.Body>
             </Modal>
+
+            <SubscriptionConfirmation
+                confirmed={this.state.confirmed}
+                closeConfirmation={this.closeConfirmation} />
+            </div>
         )
     }
 }
