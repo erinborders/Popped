@@ -157,9 +157,38 @@ p, button {
 }
 
 #search-bar-container {
+  background-color: aqua;
   animation: Home-page 1s ease-in forwards;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
   width: 100vw;
+}
+
+#zipcode-image {
+  height: 100vh;
+  width: 100vw;
+  background-size: contain;
+  opacity: 0.3;
+  position: absolute;
+  z-index: -1;
+}
+
+#search-bar {
+  padding: 2rem;
+  box-shadow: 10px 10px aqua;
+}
+
+#search-bar-lv2{
+  border-radius: 10px;
+  border: 5px double rgb(120, 250, 250);
+  padding: 2rem;
+  text-align: center;
+}
+
+#zipcode-input {
+  margin: 1rem;
 }
 
 #nav-logo {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Input, Paper } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import axios from 'axios'
+import { Container, TextField, Paper } from '@material-ui/core'
+import Atlanta from '../images/atlanta-arial.jpg'
 
 export default class SearchBar extends Component {
 
@@ -9,17 +8,22 @@ export default class SearchBar extends Component {
         
         return (
             <Container id="search-bar-container">
+                <img id="zipcode-image" src={Atlanta} />
                 <Paper id="search-bar">
-                    <h2>Search For Pop Ups in Your Area</h2>
+                    <div id="search-bar-lv2">
+                    <h2>Welcome to Popped! Where would you like to find pop ups?</h2>
                         <form onSubmit={this.props.handleSearchSubmit}>
-                            <SearchIcon />
-                            <Input
+                            {/* <SearchIcon /> */}
+                            <TextField
+                                id="zipcode-input"
+                                // variant="outlined"
                                 placeholder="zipcode"
                                 name="zipcode"
                                 onChange={this.props.handleSearchChange}
                                 value={this.props.zipcode}
-                            />
+                                />
                         </form>
+                        </div>
                 </Paper>
             </Container>
         )
