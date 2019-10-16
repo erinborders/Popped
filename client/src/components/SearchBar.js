@@ -11,7 +11,7 @@ export default class SearchBar extends Component {
                 <img id="zipcode-image" src={Atlanta} />
                 <Paper id="search-bar">
                     <div id="search-bar-lv2">
-                    <h2>Welcome to Popped! Where would you like to find pop ups?</h2>
+                    <h2>Welcome to The Pop Up Guide! Where would you like to find pop ups?</h2>
                         <form onSubmit={this.props.handleSearchSubmit}>
                             {/* <SearchIcon /> */}
                             <TextField

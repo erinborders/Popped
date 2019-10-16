@@ -28,7 +28,7 @@ export default class LandingPage extends Component {
                         <img id="landing-page-image" src={Atlanta} />
                     </div>
                     <div id="circle">
-                        <h1 className="logo">Popped</h1>
+                        <h1 className="logo">The Pop Up Guide</h1>
                         <p className="subtitle">Atlanta pop ups in one place</p>
                     </div>
                 </div>
