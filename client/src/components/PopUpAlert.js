@@ -53,6 +53,8 @@ export default class PopUpAlert extends Component {
                         <form onSubmit={this.handleNewsletterSubmit} autoComplete="off">
                             <TextField 
                                 required
+                                fullWidth
+                                variant="outlined"
                                 id="name"
                                 label= "First and Last Name"
                                 value={this.state.newSubscriber.name}
@@ -61,6 +63,8 @@ export default class PopUpAlert extends Component {
                                 />
                             <TextField
                                 required
+                                fullWidth
+                                variant="outlined"
                                 id="emailAddress"
                                 label="Email Address"
                                 value={this.state.newSubscriber.emailAddress}
