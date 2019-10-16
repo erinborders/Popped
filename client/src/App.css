@@ -16,9 +16,30 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
 
+@media only screen and (max-width: 600px) {
+  #nav-buttons {
+    width: 60%;
+    display: flex;
+  }
+
+  #zipcode-button, #popup-alert-button {
+    width: 60%;
+    display: inline;
+  }
+
+  #home-page-container {
+    width: fit-content;
+  }
+}
+
 body {
   background-color: aqua;
+  min-height: 100vh;
   animation: Home-page 1s ease-in forwards;
+}
+
+#body-container {
+  background-color: aqua;
 }
 
 .App {

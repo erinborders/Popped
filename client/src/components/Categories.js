@@ -37,7 +37,7 @@ export default class Categories extends Component {
        })
 
         return (
-            <div>
+            <div id="category-div">
                 <Container>
                     <Container className="category-container">
                         {categoryList}

@@ -21,9 +21,9 @@ export default class Nav extends Component {
                 <AppBar position="static">
                     <Toolbar className="nav-bar">
                         <h2 id="nav-logo">Popped</h2>
-                        <div>
+                        <div id="nav-buttons">
                             <button id="zipcode-button" onClick={this.props.handleChangeZipClick}>Change Zipcode</button>
-                            <button id="popup-alert-button" onClick={this.open}>Get New Pop Up Alerts</button>
+                            <button id="popup-alert-button" onClick={this.open}>Join Newsletter</button>
                         </div>
                     </Toolbar>
                 </AppBar>
