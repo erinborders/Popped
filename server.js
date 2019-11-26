@@ -83,10 +83,10 @@ app.post('/api/addSubscriber', (req, res) => {
 })
 
 //keep app awake
-var http = require("http");
-setInterval(function() {
-    http.get("http://poppedpopups.herokuapp.com");
-}, 300000); // every 5 minutes 
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://poppedpopups.herokuapp.com");
+// }, 300000); // every 5 minutes 
 
 
 app.get('/*', (req, res) => {
